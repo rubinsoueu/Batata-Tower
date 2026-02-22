@@ -87,28 +87,40 @@ PIXEL_COLORS = {
 
 PAT_BANANA = [
     [
-        ".....BB.....",
-        "....BXXB....",
-        "...BXXXXB...",
-        "..BXXBXXBXB.",
-        "..BXXXXXXXB.",
-        ".BXXXXXXXXB.",
-        ".BXXXXXXXB..",
-        ".BXXXXXXB...",
-        "..BXXXXB....",
-        "...BBBB....."
+        "...........BB...",
+        "..........BXXB..",
+        ".........BXXXB..",
+        "........BXXXXB..",
+        ".......BXXXXB...",
+        "......BXXXXB....",
+        ".....BXXXXB.....",
+        "....BXXXXB......",
+        "...BXXXXB.......",
+        "..BXXXXB........",
+        ".BXXXXB.........",
+        ".BXXXB..........",
+        "..BXB...........",
+        "...B............",
+        "................",
+        "................"
     ],
     [
-        ".....BB.....",
-        "....BXXB....",
-        "...BXXXXB...",
-        "..BXXBXXBXB.",
-        "..BXXXXXXXB.",
-        "..BXXXXXXXB.",
-        "...BXXXXXXB.",
-        "....BXXXXXB.",
-        ".....BXXXXB.",
-        "......BBBB.."
+        "...........BB...",
+        "..........BXXB..",
+        ".........BXXXB..",
+        "........BXXXXB..",
+        ".......BXXXXB...",
+        "......BXXXXB....",
+        ".....BXXXXB.....",
+        "....BXXXXB......",
+        "...BXXXXB.......",
+        "..BXXXXB........",
+        ".BXXXXB.........",
+        ".BXXXB..........",
+        "..BXB...........",
+        "...B............",
+        "................",
+        "................"
     ]
 ]
 
@@ -210,12 +222,12 @@ init_sprites()
 # Caminho que as bananas seguem (curvinha pra ficar mais engraçado)
 PATHS = {
     1: [
-        (0, 180), (120, 180), (120, 320), (300, 320), (300, 140),
-        (520, 140), (520, 400), (720, 400), (720, 220), (900, 220)
+        (-40, 180), (140, 180), (140, 340), (280, 340), (280, 160),
+        (540, 160), (540, 420), (740, 420), (740, 240), (940, 240)
     ],
     2: [
-        (0, 50), (180, 50), (180, 500), (380, 500), (380, 150),
-        (600, 150), (600, 450), (820, 450), (820, 250), (900, 250)
+        (-40, 110), (160, 110), (160, 480), (360, 480), (360, 180),
+        (620, 180), (620, 460), (800, 460), (800, 280), (940, 280)
     ]
 }
 
@@ -657,6 +669,13 @@ while running:
                 fx_shoot.play() # Feedback sonoro menu
             elif state == "PLAYING":
                 x, y = pygame.mouse.get_pos()
+                
+                # Check botão sair (canto superior esquerdo)
+                if 5 <= x <= 85 and 5 <= y <= 35:
+                    state = "MAIN_MENU"
+                    fx_shoot.play()
+                    continue
+
                 if y < 80: continue # Área da UI
                 
                 # Check se clicou em torre existente (Upgrade)
@@ -937,11 +956,20 @@ while running:
     pygame.draw.line(screen, (20, 60, 20), (0, 40), (WIDTH, 40), 3)
 
     money_text = font.render(f"R$ {money}", True, YELLOW)
+    
+    # Botão Sair UI
+    mx, my = pygame.mouse.get_pos()
+    hover_sair = 5 <= mx <= 85 and 5 <= my <= 35
+    sair_cor = (255, 100, 100) if hover_sair else (200, 80, 80)
+    pygame.draw.rect(screen, sair_cor, (5, 5, 80, 30), border_radius=5)
+    sair_txt = small_font.render("Sair", True, WHITE)
+    screen.blit(sair_txt, (5 + 40 - sair_txt.get_width()//2, 5 + 15 - sair_txt.get_height()//2))
+
     lives_text = font.render(f"Vidas: {lives}", True, (255, 100, 100))
     wave_text = font.render(f"Wave: {current_wave+1}", True, (100, 200, 255))
     
-    screen.blit(lives_text, (20, 5))
-    screen.blit(money_text, (150, 5))
+    screen.blit(lives_text, (95, 5))
+    screen.blit(money_text, (200, 5))
     screen.blit(wave_text, (WIDTH - 140, 5))
     
     # Barra de Seleção de Torres na UI
