@@ -87,24 +87,28 @@ PIXEL_COLORS = {
 
 PAT_BANANA = [
     [
-        "....XXXX....",
-        "...XXXXXX...",
-        "..XXXBXXBX..",
-        "..XXXXXXXX..",
-        "..XXXXXXXX..",
-        "...XXXXXX...",
-        "...XX..XX...",
-        "...BB..BB..."
+        ".....BB.....",
+        "....BXXB....",
+        "...BXXXXB...",
+        "..BXXBXXBXB.",
+        "..BXXXXXXXB.",
+        ".BXXXXXXXXB.",
+        ".BXXXXXXXB..",
+        ".BXXXXXXB...",
+        "..BXXXXB....",
+        "...BBBB....."
     ],
     [
-        "....XXXX....",
-        "...XXXXXX...",
-        "..XXXBXXBX..",
-        "..XXXXXXXX..",
-        "..XXXXXXXX..",
-        "...XXXXXX...",
-        "....XXXX....",
-        "....BBBB...."
+        ".....BB.....",
+        "....BXXB....",
+        "...BXXXXB...",
+        "..BXXBXXBXB.",
+        "..BXXXXXXXB.",
+        "..BXXXXXXXB.",
+        "...BXXXXXXB.",
+        "....BXXXXXB.",
+        ".....BXXXXB.",
+        "......BBBB.."
     ]
 ]
 
